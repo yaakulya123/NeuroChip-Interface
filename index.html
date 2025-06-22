@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroHeal Memory Intervention System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="login-overlay" id="login-overlay">
+        <div class="login-panel">
+            <h2><i class="fas fa-brain"></i> NeuroHeal Access</h2>
+            <div class="login-form">
+                <input type="text" placeholder="Doctor ID" id="doctor-id">
+                <input type="password" placeholder="Security Code" id="security-code">
+                <button onclick="authenticate()" class="login-btn">
+                    <i class="fas fa-shield-alt"></i> Authenticate
+                </button>
+            </div>
+            <div class="security-notice">
+                <i class="fas fa-lock"></i> Encrypted Neural Interface Protocol
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <i class="fas fa-brain"></i>
+                <h1>NeuroHeal Memory Intervention System</h1>
+                <span class="version">v2.4.1 Neural Protocol</span>
+            </div>
+            <div class="user-info">
+                <i class="fas fa-user-md"></i>
+                <span>Dr. Sarah Chen | Level 5 Clearance</span>
+                <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+            </div>
+        </div>
+        <nav>
+            <div class="nav-item active" data-section="dashboard">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+            </div>
+            <div class="nav-item" data-section="brain-scan">
+                <i class="fas fa-brain"></i> Neural Scan
+            </div>
+            <div class="nav-item" data-section="memory-mapping">
+                <i class="fas fa-project-diagram"></i> Memory Map
+            </div>
+            <div class="nav-item" data-section="procedure-planning">
+                <i class="fas fa-cogs"></i> Procedure
+            </div>
+            <div class="nav-item" data-section="documentation">
+                <i class="fas fa-file-medical"></i> Documentation
+            </div>
+            <div class="nav-item" data-section="progress-tracking">
+                <i class="fas fa-chart-line"></i> Progress
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="dashboard" class="active-section">
+            <div class="section-header">
+                <h2><i class="fas fa-tachometer-alt"></i> Patient Dashboard</h2>
+                <div class="real-time-indicator">
+                    <div class="pulse"></div>
+                    <span>Real-time monitoring active</span>
+                </div>
+            </div>
+            
+            <div class="dashboard-stats">
+                <div class="stat-card critical">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Critical Cases</div>
+                </div>
+                <div class="stat-card warning">
+                    <i class="fas fa-clock"></i>
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Pending Evaluations</div>
+                </div>
+                <div class="stat-card success">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="stat-number">23</div>
+                    <div class="stat-label">Successful Procedures</div>
+                </div>
+                <div class="stat-card info">
+                    <i class="fas fa-eye"></i>
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Under Monitoring</div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="patient-list-panel">
+                    <h3><i class="fas fa-users"></i> Active Patients</h3>
+                    <div id="patient-list" class="patient-list"></div>
+                </div>
+                <div class="alerts-panel">
+                    <h3><i class="fas fa-bell"></i> System Alerts</h3>
+                    <div id="monitoring-alerts" class="alerts-list"></div>
+                </div>
+                <div class="procedures-panel">
+                    <h3><i class="fas fa-calendar-alt"></i> Today's Procedures</h3>
+                    <div id="todays-procedures" class="procedures-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="brain-scan">
+            <div class="section-header">
+                <h2><i class="fas fa-brain"></i> Neural Scan Visualization</h2>
+                <div class="patient-selector">
+                    <select id="scan-patient-select">
+                        <option>Marcus Rivera - Combat Trauma</option>
+                        <option>Elena Vasquez - Accident Survivor</option>
+                        <option>David Kim - Assault Recovery</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="brain-scan-container">
+                <div class="scan-controls">
+                    <button class="scan-btn active" data-scan="before">
+                        <i class="fas fa-brain"></i> Pre-Intervention
+                    </button>
+                    <button class="scan-btn" data-scan="after">
+                        <i class="fas fa-brain"></i> Post-Intervention
+                    </button>
+                    <button class="scan-btn" data-scan="comparison">
+                        <i class="fas fa-exchange-alt"></i> Comparison
+                    </button>
+                </div>
+                
+                <div class="brain-visualization">
+                    <canvas id="brain-3d" width="600" height="400"></canvas>
+                    <div class="scan-info">
+                        <div class="trauma-indicators">
+                            <h4>Trauma Markers Detected:</h4>
+                            <div class="marker high-risk">Amygdala Hyperactivity: 89%</div>
+                            <div class="marker medium-risk">Hippocampus Dysfunction: 67%</div>
+                            <div class="marker low-risk">Prefrontal Cortex: 34%</div>
+                        </div>
+                        <div class="intervention-zones">
+                            <h4>Intervention Targets:</h4>
+                            <div class="zone primary">Primary: Memory Cluster 7A-9C</div>
+                            <div class="zone secondary">Secondary: Neural Pathway B-15</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="heatmap-legend">
+                    <h4>Neural Activity Scale</h4>
+                    <div class="legend-scale">
+                        <div class="scale-item" style="background: #ff4444;">Critical (80-100%)</div>
+                        <div class="scale-item" style="background: #ff8800;">High (60-79%)</div>
+                        <div class="scale-item" style="background: #ffbb00;">Moderate (40-59%)</div>
+                        <div class="scale-item" style="background: #88cc00;">Normal (20-39%)</div>
+                        <div class="scale-item" style="background: #00cc44;">Optimal (0-19%)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="memory-mapping">
+            <div class="section-header">
+                <h2><i class="fas fa-project-diagram"></i> Memory Mapping Interface</h2>
+                <div class="mapping-controls">
+                    <button class="map-btn"><i class="fas fa-search-plus"></i> Zoom In</button>
+                    <button class="map-btn"><i class="fas fa-search-minus"></i> Zoom Out</button>
+                    <button class="map-btn"><i class="fas fa-sync"></i> Refresh</button>
+                </div>
+            </div>
+            
+            <div class="memory-mapping-container">
+                <div class="memory-timeline">
+                    <h3><i class="fas fa-history"></i> Traumatic Memory Timeline</h3>
+                    <div class="timeline" id="memory-timeline"></div>
+                </div>
+                
+                <div class="neural-network">
+                    <h3><i class="fas fa-network-wired"></i> Neural Pathway Map</h3>
+                    <canvas id="neural-pathways" width="500" height="300"></canvas>
+                </div>
+                
+                <div class="risk-matrix">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Risk Assessment Matrix</h3>
+                    <div class="risk-grid" id="risk-assessment"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="procedure-planning">
+            <div class="section-header">
+                <h2><i class="fas fa-cogs"></i> Procedure Planning</h2>
+                <div class="procedure-status">
+                    <span class="status-indicator ready">System Ready</span>
+                </div>
+            </div>
+            
+            <div class="procedure-container">
+                <div class="memory-selection-panel">
+                    <h3><i class="fas fa-brain"></i> Memory Selection</h3>
+                    <div class="memory-targets" id="memory-selection"></div>
+                </div>
+                
+                <div class="intervention-controls">
+                    <h3><i class="fas fa-sliders-h"></i> Intervention Parameters</h3>
+                    <div class="control-group">
+                        <label for="intensity">Neural Pulse Intensity:</label>
+                        <input type="range" id="intensity" min="1" max="10" value="5">
+                        <span class="intensity-value">5 Tesla</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="frequency">Frequency:</label>
+                        <input type="range" id="frequency" min="1" max="100" value="40">
+                        <span class="frequency-value">40 Hz</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="duration">Duration:</label>
+                        <input type="range" id="duration" min="5" max="60" value="15">
+                        <span class="duration-value">15 minutes</span>
+                    </div>
+                </div>
+                
+                <div class="outcome-prediction">
+                    <h3><i class="fas fa-chart-bar"></i> Predicted Outcomes</h3>
+                    <div class="prediction-metrics" id="predicted-outcomes"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="documentation">
+            <div class="section-header">
+                <h2><i class="fas fa-file-medical"></i> Documentation & Consent</h2>
+                <div class="doc-status">
+                    <i class="fas fa-shield-alt"></i> Legally Compliant Protocol
+                </div>
+            </div>
+            
+            <div class="documentation-container">
+                <div class="consent-documents">
+                    <h3><i class="fas fa-file-contract"></i> Legal Documentation</h3>
+                    <div class="legal-disclaimers" id="legal-disclaimers"></div>
+                </div>
+                
+                <div class="signature-section">
+                    <h3><i class="fas fa-signature"></i> Digital Consent Capture</h3>
+                    <div class="signature-capture">
+                        <canvas id="signature-pad" width="400" height="150"></canvas>
+                        <div class="signature-controls">
+                            <button onclick="clearSignature()"><i class="fas fa-eraser"></i> Clear</button>
+                            <button onclick="saveSignature()" class="primary"><i class="fas fa-save"></i> Save Signature</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="authorization-panel">
+                    <h3><i class="fas fa-check-square"></i> Final Authorization</h3>
+                    <div class="auth-checklist">
+                        <label><input type="checkbox"> Patient psychological evaluation complete</label>
+                        <label><input type="checkbox"> Legal consent obtained</label>
+                        <label><input type="checkbox"> Insurance pre-authorization received</label>
+                        <label><input type="checkbox"> Emergency protocols briefed</label>
+                        <label><input type="checkbox"> Post-procedure monitoring scheduled</label>
+                    </div>
+                    <button class="authorize-btn"><i class="fas fa-unlock"></i> Authorize Procedure</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="progress-tracking">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-line"></i> Progress Tracking</h2>
+                <div class="tracking-period">
+                    <select>
+                        <option>Last 30 Days</option>
+                        <option>Last 90 Days</option>
+                        <option>Last 6 Months</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="progress-container">
+                <div class="recovery-chart">
+                    <h3><i class="fas fa-heart"></i> Recovery Timeline</h3>
+                    <canvas id="recovery-timeline" width="500" height="250"></canvas>
+                </div>
+                
+                <div class="therapy-notes">
+                    <h3><i class="fas fa-notes-medical"></i> Therapy Session Notes</h3>
+                    <div class="notes-list" id="therapy-notes"></div>
+                </div>
+                
+                <div class="side-effects-monitor">
+                    <h3><i class="fas fa-thermometer-half"></i> Side Effects Monitor</h3>
+                    <div class="effects-grid" id="side-effects"></div>
+                </div>
+                
+                <div class="success-metrics">
+                    <h3><i class="fas fa-trophy"></i> Success Metrics</h3>
+                    <div class="metrics-dashboard" id="success-metrics"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <aside class="security-panel">
+        <div class="security-header">
+            <h3><i class="fas fa-shield-alt"></i> Security Status</h3>
+            <div class="security-level">LEVEL 5</div>
+        </div>
+        <div class="security-features">
+            <div class="feature active">
+                <i class="fas fa-user-shield"></i>
+                <span>Doctor Authentication</span>
+                <div class="status-dot green"></div>
+            </div>
+            <div class="feature active">
+                <i class="fas fa-lock"></i>
+                <span>Data Encryption</span>
+                <div class="status-dot green"></div>
+            </div>
+            <div class="feature active">
+                <i class="fas fa-history"></i>
+                <span>Audit Trail</span>
+                <div class="status-dot green"></div>
+            </div>
+            <div class="feature active">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>Emergency Protocols</span>
+                <div class="status-dot green"></div>
+            </div>
+        </div>
+        <div class="system-info">
+            <div class="info-item">
+                <span>Last Backup:</span>
+                <span>2 min ago</span>
+            </div>
+            <div class="info-item">
+                <span>System Load:</span>
+                <span>67%</span>
+            </div>
+            <div class="info-item">
+                <span>Active Sessions:</span>
+                <span>3</span>
+            </div>
+        </div>
+    </aside>
+
+    <script src="script.js"></script>
+</body>
+</html> 
