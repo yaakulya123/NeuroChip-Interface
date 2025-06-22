@@ -300,109 +300,6 @@ section.active-section {
     font-size: 1.2rem;
 }
 
-/* Brain Scan Visualization */
-.brain-scan-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.scan-controls {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-}
-
-.scan-btn {
-    padding: 1rem 2rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(100, 181, 246, 0.3);
-    border-radius: 10px;
-    color: #fff;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-}
-
-.scan-btn:hover, .scan-btn.active {
-    background: linear-gradient(45deg, #2196f3, #64b5f6);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
-}
-
-.brain-visualization {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 2rem;
-    align-items: start;
-}
-
-#brain-3d {
-    background: linear-gradient(145deg, #1a1f3a, #2d3e50);
-    border-radius: 15px;
-    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.3);
-    border: 2px solid rgba(100, 181, 246, 0.3);
-}
-
-.scan-info {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.trauma-indicators, .intervention-zones {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 1rem;
-    border-radius: 10px;
-    border: 1px solid rgba(100, 181, 246, 0.2);
-}
-
-.trauma-indicators h4, .intervention-zones h4 {
-    color: #64b5f6;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-}
-
-.marker, .zone {
-    padding: 0.5rem;
-    margin: 0.5rem 0;
-    border-radius: 6px;
-    font-size: 0.9rem;
-}
-
-.marker.high-risk { background: rgba(244, 67, 54, 0.2); border-left: 4px solid #f44336; }
-.marker.medium-risk { background: rgba(255, 152, 0, 0.2); border-left: 4px solid #ff9800; }
-.marker.low-risk { background: rgba(76, 175, 80, 0.2); border-left: 4px solid #4caf50; }
-
-.zone.primary { background: rgba(33, 150, 243, 0.2); border-left: 4px solid #2196f3; }
-.zone.secondary { background: rgba(156, 39, 176, 0.2); border-left: 4px solid #9c27b0; }
-
-.heatmap-legend {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 1.5rem;
-    border-radius: 10px;
-    border: 1px solid rgba(100, 181, 246, 0.2);
-}
-
-.heatmap-legend h4 {
-    color: #64b5f6;
-    margin-bottom: 1rem;
-}
-
-.legend-scale {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.scale-item {
-    padding: 0.5rem;
-    border-radius: 6px;
-    color: #fff;
-    font-weight: 500;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
 /* Memory Mapping */
 .memory-mapping-container {
     display: grid;
@@ -563,33 +460,215 @@ section.active-section {
 
 /* Progress Tracking */
 .progress-container {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: auto auto;
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
 }
 
-.recovery-chart {
-    grid-column: 1;
-    grid-row: 1 / -1;
+.recovery-overview {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid rgba(100, 181, 246, 0.2);
 }
 
-.recovery-chart, .therapy-notes, .side-effects-monitor, .success-metrics {
+.recovery-overview h3 {
+    color: #64b5f6;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+}
+
+.recovery-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.patient-selector label {
+    color: #bbb;
+    margin-right: 0.5rem;
+}
+
+.patient-selector select {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(100, 181, 246, 0.3);
+    border-radius: 6px;
+    color: #fff;
+    padding: 0.5rem 1rem;
+}
+
+.timeline-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.timeline-btn {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(100, 181, 246, 0.3);
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.timeline-btn:hover, .timeline-btn.active {
+    background: linear-gradient(45deg, #2196f3, #64b5f6);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+.chart-container {
+    background: linear-gradient(145deg, #1a1f3a, #2d3e50);
+    border-radius: 15px;
+    padding: 1rem;
+    border: 2px solid rgba(100, 181, 246, 0.3);
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+#recovery-timeline {
+    background: transparent;
+    border: none;
+}
+
+.recovery-legends {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #bbb;
+    font-size: 0.9rem;
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+}
+
+.recovery-metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.metric-panel, .milestone-panel, .comparison-panel {
     background: rgba(255, 255, 255, 0.05);
     padding: 1.5rem;
     border-radius: 10px;
     border: 1px solid rgba(100, 181, 246, 0.2);
 }
 
-.recovery-chart h3, .therapy-notes h3, .side-effects-monitor h3, .success-metrics h3 {
+.metric-panel h4, .milestone-panel h4, .comparison-panel h4 {
     color: #64b5f6;
     margin-bottom: 1rem;
+    font-size: 1.1rem;
 }
 
-#recovery-timeline {
+.indicators-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.indicator-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    border-left: 3px solid #4caf50;
+}
+
+.indicator-label {
+    color: #bbb;
+    font-size: 0.9rem;
+}
+
+.indicator-value {
+    color: #4caf50;
+    font-weight: 600;
+}
+
+.indicator-value.warning { color: #ff9800; }
+.indicator-value.critical { color: #f44336; }
+
+.milestones-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.milestone-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.5rem;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.milestone-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #fff;
+}
+
+.milestone-icon.completed { background: #4caf50; }
+.milestone-icon.current { background: #2196f3; }
+.milestone-icon.pending { background: #666; }
+
+.milestone-text {
+    flex: 1;
+    color: #bbb;
+    font-size: 0.9rem;
+}
+
+.milestone-date {
+    color: #64b5f6;
+    font-size: 0.8rem;
+}
+
+#comparison-chart {
     background: linear-gradient(145deg, #1a1f3a, #2d3e50);
     border-radius: 10px;
     border: 2px solid rgba(100, 181, 246, 0.3);
+}
+
+.detailed-progress {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.therapy-notes, .side-effects-monitor, .success-metrics {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid rgba(100, 181, 246, 0.2);
+}
+
+.therapy-notes h3, .side-effects-monitor h3, .success-metrics h3 {
+    color: #64b5f6;
+    margin-bottom: 1rem;
 }
 
 /* Security Panel */
@@ -1060,7 +1139,7 @@ section.active-section {
 }
 
 @media (max-width: 900px) {
-    .dashboard-grid, .brain-visualization, .memory-mapping-container, .procedure-container, .documentation-container, .progress-container {
+    .dashboard-grid, .memory-mapping-container, .procedure-container, .documentation-container, .progress-container {
         grid-template-columns: 1fr;
     }
     
