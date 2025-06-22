@@ -7,13 +7,13 @@ const patients = [
         condition: 'Combat PTSD',
         severity: 'Critical',
         status: 'Scheduled',
-        lastScan: '2024-01-15',
+        lastScan: '2047-01-15',
         traumaScore: 89,
         alerts: ['High-risk PTSD episode detected', 'Amygdala hyperactivity 94%'],
         memories: [
-            { id: 1, event: 'IED Explosion - Kandahar', date: '2019-03-15', intensity: 95, targeted: true },
-            { id: 2, event: 'Loss of Unit Members', date: '2019-03-15', intensity: 98, targeted: true },
-            { id: 3, event: 'Combat Engagement', date: '2019-02-28', intensity: 78, targeted: false }
+            { id: 1, event: 'IED Explosion - Kandahar', date: '2046-03-15', intensity: 95, targeted: true },
+            { id: 2, event: 'Loss of Unit Members', date: '2046-03-15', intensity: 98, targeted: true },
+            { id: 3, event: 'Combat Engagement', date: '2046-02-28', intensity: 78, targeted: false }
         ]
     },
     {
@@ -23,12 +23,12 @@ const patients = [
         condition: 'Vehicular Trauma',
         severity: 'High',
         status: 'In Progress',
-        lastScan: '2024-01-18',
+        lastScan: '2047-01-18',
         traumaScore: 72,
         alerts: ['Mild anxiety spike', 'Session scheduled tomorrow'],
         memories: [
-            { id: 4, event: 'Highway Collision', date: '2023-09-12', intensity: 87, targeted: true },
-            { id: 5, event: 'Hospital Recovery', date: '2023-09-13', intensity: 45, targeted: false }
+            { id: 4, event: 'Highway Collision', date: '2046-09-12', intensity: 87, targeted: true },
+            { id: 5, event: 'Hospital Recovery', date: '2046-09-13', intensity: 45, targeted: false }
         ]
     },
     {
@@ -38,11 +38,11 @@ const patients = [
         condition: 'Assault Recovery',
         severity: 'Moderate',
         status: 'Monitoring',
-        lastScan: '2024-01-20',
+        lastScan: '2047-01-20',
         traumaScore: 58,
         alerts: [],
         memories: [
-            { id: 6, event: 'Physical Assault', date: '2023-11-08', intensity: 71, targeted: true }
+            { id: 6, event: 'Physical Assault', date: '2046-11-08', intensity: 71, targeted: true }
         ]
     },
     {
@@ -52,7 +52,7 @@ const patients = [
         condition: 'Workplace Incident',
         severity: 'Low',
         status: 'Evaluation',
-        lastScan: '2024-01-22',
+        lastScan: '2047-01-22',
         traumaScore: 34,
         alerts: ['Initial assessment complete'],
         memories: []
@@ -64,11 +64,11 @@ const patients = [
         condition: 'Natural Disaster Trauma',
         severity: 'High',
         status: 'Post-Procedure',
-        lastScan: '2024-01-14',
+        lastScan: '2047-01-14',
         traumaScore: 28,
         alerts: ['Recovery progressing well', 'Follow-up in 3 days'],
         memories: [
-            { id: 7, event: 'Earthquake Survival', date: '2023-05-15', intensity: 15, targeted: true }
+            { id: 7, event: 'Earthquake Survival', date: '2046-05-15', intensity: 15, targeted: true }
         ]
     }
 ];
@@ -81,10 +81,10 @@ const procedures = [
 ];
 
 const therapyNotes = [
-    { date: '2024-01-22', patient: 'Marcus Rivera', note: 'Patient showing improved sleep patterns. Nightmares reduced from daily to 2-3 times per week. Appetite returning to normal.' },
-    { date: '2024-01-21', patient: 'Elena Vasquez', note: 'Driving anxiety significantly decreased. Patient successfully completed 30-minute highway drive without panic response.' },
-    { date: '2024-01-20', patient: 'David Kim', note: 'Social interactions improving. Patient attended group therapy session and showed positive engagement.' },
-    { date: '2024-01-19', patient: 'James Thompson', note: 'Remarkable progress post-intervention. No trauma triggers detected in controlled environment testing.' }
+    { date: '2047-01-22', patient: 'Marcus Rivera', note: 'Patient showing improved sleep patterns. Nightmares reduced from daily to 2-3 times per week. Appetite returning to normal.' },
+    { date: '2047-01-21', patient: 'Elena Vasquez', note: 'Driving anxiety significantly decreased. Patient successfully completed 30-minute highway drive without panic response.' },
+    { date: '2047-01-20', patient: 'David Kim', note: 'Social interactions improving. Patient attended group therapy session and showed positive engagement.' },
+    { date: '2047-01-19', patient: 'James Thompson', note: 'Remarkable progress post-intervention. No trauma triggers detected in controlled environment testing.' }
 ];
 
 const sideEffects = [
@@ -98,12 +98,12 @@ function authenticate() {
     const doctorId = document.getElementById('doctor-id').value;
     const securityCode = document.getElementById('security-code').value;
     
-    if (doctorId === 'DR001' && securityCode === 'NEURAL2024') {
+    if (doctorId === 'DR001' && securityCode === 'NEURAL2047') {
         document.getElementById('login-overlay').style.display = 'none';
         document.body.style.overflow = 'auto';
         initializeSystem();
     } else {
-        alert('Invalid credentials. Try DR001 / NEURAL2024');
+        alert('Invalid credentials. Try DR001 / NEURAL2047');
     }
 }
 
@@ -134,7 +134,6 @@ function initializeNavigation() {
             });
             
             // Initialize section-specific content
-            if (targetSection === 'brain-scan') initializeBrainScan();
             if (targetSection === 'memory-mapping') initializeMemoryMapping();
             if (targetSection === 'procedure-planning') initializeProcedurePlanning();
             if (targetSection === 'progress-tracking') initializeProgressTracking();
@@ -210,81 +209,6 @@ function populateTodaysProcedures() {
         `;
         proceduresList.appendChild(procedureItem);
     });
-}
-
-// Brain scan visualization
-function initializeBrainScan() {
-    const canvas = document.getElementById('brain-3d');
-    if (!canvas) return;
-    
-    const ctx = canvas.getContext('2d');
-    drawAdvancedBrainScan(ctx, 'before');
-    
-    // Setup scan controls
-    const scanBtns = document.querySelectorAll('.scan-btn');
-    scanBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            scanBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            drawAdvancedBrainScan(ctx, btn.dataset.scan);
-        });
-    });
-}
-
-function drawAdvancedBrainScan(ctx, scanType) {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    
-    // Draw brain outline
-    ctx.strokeStyle = '#64b5f6';
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    ctx.ellipse(300, 200, 180, 120, 0, 0, 2 * Math.PI);
-    ctx.stroke();
-    
-    // Draw brain regions with activity levels
-    const regions = [
-        { x: 220, y: 160, radius: 25, activity: scanType === 'before' ? 0.9 : 0.3, label: 'Amygdala' },
-        { x: 380, y: 180, radius: 30, activity: scanType === 'before' ? 0.7 : 0.2, label: 'Hippocampus' },
-        { x: 300, y: 120, radius: 35, activity: scanType === 'before' ? 0.4 : 0.1, label: 'Prefrontal' },
-        { x: 250, y: 240, radius: 20, activity: scanType === 'before' ? 0.6 : 0.2, label: 'Temporal' },
-        { x: 350, y: 250, radius: 22, activity: scanType === 'before' ? 0.5 : 0.1, label: 'Parietal' }
-    ];
-    
-    regions.forEach(region => {
-        const intensity = region.activity;
-        let color;
-        if (intensity > 0.8) color = '#ff4444';
-        else if (intensity > 0.6) color = '#ff8800';
-        else if (intensity > 0.4) color = '#ffbb00';
-        else if (intensity > 0.2) color = '#88cc00';
-        else color = '#00cc44';
-        
-        ctx.fillStyle = color;
-        ctx.globalAlpha = 0.7;
-        ctx.beginPath();
-        ctx.arc(region.x, region.y, region.radius, 0, 2 * Math.PI);
-        ctx.fill();
-        
-        // Add pulsing effect for high activity
-        if (intensity > 0.7 && scanType === 'before') {
-            ctx.globalAlpha = 0.3;
-            ctx.beginPath();
-            ctx.arc(region.x, region.y, region.radius * 1.5, 0, 2 * Math.PI);
-            ctx.fill();
-        }
-        
-        ctx.globalAlpha = 1;
-        
-        // Labels
-        ctx.fillStyle = '#fff';
-        ctx.font = '12px Segoe UI';
-        ctx.fillText(region.label, region.x - 20, region.y + region.radius + 15);
-    });
-    
-    // Add scan type indicator
-    ctx.fillStyle = '#64b5f6';
-    ctx.font = 'bold 16px Segoe UI';
-    ctx.fillText(`Neural Activity Map - ${scanType.charAt(0).toUpperCase() + scanType.slice(1)}`, 50, 50);
 }
 
 // Memory mapping
@@ -483,7 +407,10 @@ function initializeProgressTracking() {
     populateTherapyNotes();
     populateSideEffects();
     populateSuccessMetrics();
-    drawRecoveryChart();
+    initializeRecoveryTimeline();
+    populateKeyIndicators();
+    populateRecoveryMilestones();
+    drawComparisonChart();
 }
 
 function populateTherapyNotes() {
@@ -543,48 +470,282 @@ function populateSuccessMetrics() {
     `;
 }
 
-function drawRecoveryChart() {
+// Enhanced recovery timeline data
+const recoveryData = {
+    patients: {
+        0: { // Marcus Rivera
+            trauma: [89, 85, 78, 70, 62, 55, 48, 42, 38, 34, 30, 28],
+            anxiety: [92, 88, 82, 75, 68, 61, 54, 47, 42, 38, 35, 32],
+            sleep: [15, 25, 35, 45, 55, 65, 72, 78, 82, 85, 88, 90],
+            social: [20, 28, 38, 48, 58, 65, 72, 78, 82, 85, 87, 89]
+        },
+        1: { // Elena Vasquez
+            trauma: [72, 68, 62, 56, 50, 44, 38, 33, 29, 25, 22, 20],
+            anxiety: [78, 74, 68, 61, 54, 47, 41, 36, 32, 28, 25, 23],
+            sleep: [30, 40, 50, 60, 68, 75, 81, 85, 88, 90, 92, 93],
+            social: [35, 45, 55, 63, 70, 76, 81, 85, 88, 90, 91, 92]
+        },
+        2: { // David Kim
+            trauma: [58, 54, 49, 44, 39, 35, 31, 28, 25, 23, 21, 19],
+            anxiety: [65, 61, 56, 51, 46, 41, 37, 33, 30, 27, 25, 23],
+            sleep: [45, 52, 59, 66, 72, 77, 82, 86, 89, 91, 93, 94],
+            social: [40, 48, 56, 63, 69, 74, 79, 83, 86, 89, 91, 92]
+        },
+        4: { // James Thompson (post-procedure)
+            trauma: [28, 25, 23, 21, 19, 18, 17, 16, 15, 15, 14, 14],
+            anxiety: [32, 29, 27, 25, 23, 21, 20, 19, 18, 17, 16, 16],
+            sleep: [88, 89, 90, 91, 92, 93, 94, 94, 95, 95, 96, 96],
+            social: [85, 87, 88, 89, 90, 91, 92, 93, 94, 94, 95, 95]
+        }
+    },
+    labels: ['Day 0', 'Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 6', 'Week 8', 'Week 10', 'Week 12', 'Week 16', 'Week 20', 'Week 24']
+};
+
+function initializeRecoveryTimeline() {
+    drawRecoveryChart('trauma', 'all');
+    setupRecoveryControls();
+}
+
+function setupRecoveryControls() {
+    // Patient selector
+    const patientSelect = document.getElementById('recovery-patient-select');
+    if (patientSelect) {
+        patientSelect.addEventListener('change', (e) => {
+            const currentView = document.querySelector('.timeline-btn.active').dataset.view;
+            drawRecoveryChart(currentView, e.target.value);
+        });
+    }
+
+    // Timeline view buttons
+    const timelineBtns = document.querySelectorAll('.timeline-btn');
+    timelineBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            timelineBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const selectedPatient = document.getElementById('recovery-patient-select').value;
+            drawRecoveryChart(btn.dataset.view, selectedPatient);
+        });
+    });
+}
+
+function drawRecoveryChart(metric, patientFilter) {
     const canvas = document.getElementById('recovery-timeline');
     if (!canvas) return;
     
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
-    // Draw chart background
-    ctx.strokeStyle = '#64b5f6';
+    const padding = 60;
+    const chartWidth = canvas.width - (padding * 2);
+    const chartHeight = canvas.height - (padding * 2);
+    
+    // Draw grid
+    ctx.strokeStyle = 'rgba(100, 181, 246, 0.2)';
     ctx.lineWidth = 1;
     
-    // Y-axis
+    // Horizontal grid lines
+    for (let i = 0; i <= 10; i++) {
+        const y = padding + (i * chartHeight / 10);
+        ctx.beginPath();
+        ctx.moveTo(padding, y);
+        ctx.lineTo(padding + chartWidth, y);
+        ctx.stroke();
+    }
+    
+    // Vertical grid lines
+    for (let i = 0; i <= 11; i++) {
+        const x = padding + (i * chartWidth / 11);
+        ctx.beginPath();
+        ctx.moveTo(x, padding);
+        ctx.lineTo(x, padding + chartHeight);
+        ctx.stroke();
+    }
+    
+    // Draw axes
+    ctx.strokeStyle = '#64b5f6';
+    ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.moveTo(50, 40);
-    ctx.lineTo(50, 200);
+    ctx.moveTo(padding, padding);
+    ctx.lineTo(padding, padding + chartHeight);
+    ctx.lineTo(padding + chartWidth, padding + chartHeight);
     ctx.stroke();
     
-    // X-axis
-    ctx.beginPath();
-    ctx.moveTo(50, 200);
-    ctx.lineTo(450, 200);
-    ctx.stroke();
+    // Draw target range (optimal values)
+    const targetMin = metric === 'trauma' || metric === 'anxiety' ? 15 : 85;
+    const targetMax = metric === 'trauma' || metric === 'anxiety' ? 25 : 95;
     
-    // Draw recovery curve
-    const recoveryData = [89, 82, 74, 65, 52, 41, 35, 28, 24, 20];
-    ctx.strokeStyle = '#4caf50';
-    ctx.lineWidth = 3;
-    ctx.beginPath();
+    ctx.fillStyle = 'rgba(33, 150, 243, 0.1)';
+    const targetMinY = padding + chartHeight - ((targetMin / 100) * chartHeight);
+    const targetMaxY = padding + chartHeight - ((targetMax / 100) * chartHeight);
+    ctx.fillRect(padding, targetMaxY, chartWidth, targetMinY - targetMaxY);
     
-    recoveryData.forEach((value, index) => {
-        const x = 50 + (index * 40);
-        const y = 200 - (value * 1.5);
-        if (index === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
+    // Draw data lines
+    const colors = ['#f44336', '#4caf50', '#ff9800', '#9c27b0'];
+    const patientIds = patientFilter === 'all' ? ['0', '1', '2', '4'] : [patientFilter];
+    
+    patientIds.forEach((patientId, index) => {
+        if (!recoveryData.patients[patientId]) return;
+        
+        const data = recoveryData.patients[patientId][metric];
+        const color = colors[index % colors.length];
+        
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        
+        data.forEach((value, dataIndex) => {
+            const x = padding + (dataIndex * chartWidth / 11);
+            const y = padding + chartHeight - ((value / 100) * chartHeight);
+            
+            if (dataIndex === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+            
+            // Draw data points
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(x, y, 4, 0, 2 * Math.PI);
+            ctx.fill();
+        });
+        
+        ctx.stroke();
     });
-    ctx.stroke();
     
     // Add labels
     ctx.fillStyle = '#fff';
     ctx.font = '12px Segoe UI';
-    ctx.fillText('Trauma Score', 5, 125);
-    ctx.fillText('Days Since Intervention', 200, 230);
+    
+    // Y-axis labels
+    for (let i = 0; i <= 10; i++) {
+        const value = 100 - (i * 10);
+        const y = padding + (i * chartHeight / 10);
+        ctx.fillText(value.toString(), 20, y + 4);
+    }
+    
+    // X-axis labels
+    recoveryData.labels.forEach((label, index) => {
+        const x = padding + (index * chartWidth / 11);
+        ctx.save();
+        ctx.translate(x, padding + chartHeight + 20);
+        ctx.rotate(-Math.PI / 6);
+        ctx.fillText(label, 0, 0);
+        ctx.restore();
+    });
+    
+    // Chart title
+    const metricTitles = {
+        trauma: 'Trauma Score Over Time',
+        anxiety: 'Anxiety Level Over Time',
+        sleep: 'Sleep Quality Over Time',
+        social: 'Social Function Over Time'
+    };
+    
+    ctx.fillStyle = '#64b5f6';
+    ctx.font = 'bold 16px Segoe UI';
+    ctx.fillText(metricTitles[metric], padding, 30);
+    
+    // Y-axis title
+    ctx.save();
+    ctx.translate(15, padding + chartHeight / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillStyle = '#bbb';
+    ctx.font = '12px Segoe UI';
+    ctx.fillText(metric === 'trauma' || metric === 'anxiety' ? 'Severity (%)' : 'Quality (%)', 0, 0);
+    ctx.restore();
+}
+
+function populateKeyIndicators() {
+    const indicatorsList = document.getElementById('key-indicators');
+    if (!indicatorsList) return;
+    
+    const indicators = [
+        { label: 'Average Recovery Rate', value: '94%', status: 'success' },
+        { label: 'Treatment Effectiveness', value: '87%', status: 'success' },
+        { label: 'Relapse Rate', value: '6%', status: 'warning' },
+        { label: 'Patient Compliance', value: '96%', status: 'success' },
+        { label: 'Side Effects', value: '8%', status: 'success' }
+    ];
+    
+    indicatorsList.innerHTML = '';
+    indicators.forEach(indicator => {
+        const item = document.createElement('div');
+        item.className = 'indicator-item';
+        item.innerHTML = `
+            <span class="indicator-label">${indicator.label}</span>
+            <span class="indicator-value ${indicator.status}">${indicator.value}</span>
+        `;
+        indicatorsList.appendChild(item);
+    });
+}
+
+function populateRecoveryMilestones() {
+    const milestonesList = document.getElementById('recovery-milestones');
+    if (!milestonesList) return;
+    
+    const milestones = [
+        { text: 'Initial Assessment', status: 'completed', date: '2047-01-15', icon: '✓' },
+        { text: 'Procedure Completed', status: 'completed', date: '2047-01-18', icon: '✓' },
+        { text: '2-Week Follow-up', status: 'completed', date: '2047-02-01', icon: '✓' },
+        { text: '6-Week Evaluation', status: 'current', date: '2047-03-01', icon: '→' },
+        { text: '3-Month Review', status: 'pending', date: '2047-04-18', icon: '○' },
+        { text: 'Final Assessment', status: 'pending', date: '2047-07-18', icon: '○' }
+    ];
+    
+    milestonesList.innerHTML = '';
+    milestones.forEach(milestone => {
+        const item = document.createElement('div');
+        item.className = 'milestone-item';
+        item.innerHTML = `
+            <div class="milestone-icon ${milestone.status}">${milestone.icon}</div>
+            <span class="milestone-text">${milestone.text}</span>
+            <span class="milestone-date">${milestone.date}</span>
+        `;
+        milestonesList.appendChild(item);
+    });
+}
+
+function drawComparisonChart() {
+    const canvas = document.getElementById('comparison-chart');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    const patientNames = ['Marcus', 'Elena', 'David', 'James'];
+    const improvementRates = [68, 72, 67, 50]; // Percentage improvement
+    const colors = ['#f44336', '#4caf50', '#ff9800', '#9c27b0'];
+    
+    const barWidth = 40;
+    const barSpacing = 20;
+    const chartHeight = 150;
+    const startX = 30;
+    const startY = 20;
+    
+    // Draw bars
+    improvementRates.forEach((rate, index) => {
+        const barHeight = (rate / 100) * chartHeight;
+        const x = startX + (index * (barWidth + barSpacing));
+        const y = startY + chartHeight - barHeight;
+        
+        ctx.fillStyle = colors[index];
+        ctx.fillRect(x, y, barWidth, barHeight);
+        
+        // Add percentage labels
+        ctx.fillStyle = '#fff';
+        ctx.font = '12px Segoe UI';
+        ctx.fillText(`${rate}%`, x + 5, y - 5);
+        
+        // Add patient names
+        ctx.save();
+        ctx.translate(x + barWidth/2, startY + chartHeight + 15);
+        ctx.rotate(-Math.PI / 4);
+        ctx.fillText(patientNames[index], 0, 0);
+        ctx.restore();
+    });
+    
+    // Add title
+    ctx.fillStyle = '#64b5f6';
+    ctx.font = 'bold 14px Segoe UI';
+    ctx.fillText('Improvement Rates', 10, 10);
 }
 
 // Signature functionality
@@ -647,7 +808,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         if (document.getElementById('login-overlay').style.display !== 'none') {
             document.getElementById('doctor-id').value = 'DR001';
-            document.getElementById('security-code').value = 'NEURAL2024';
+            document.getElementById('security-code').value = 'NEURAL2047';
         }
     }, 1000);
 }); 
