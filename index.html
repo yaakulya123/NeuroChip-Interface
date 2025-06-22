@@ -41,9 +41,7 @@
             <div class="nav-item active" data-section="dashboard">
                 <i class="fas fa-tachometer-alt"></i> Dashboard
             </div>
-            <div class="nav-item" data-section="brain-scan">
-                <i class="fas fa-brain"></i> Neural Scan
-            </div>
+
             <div class="nav-item" data-section="memory-mapping">
                 <i class="fas fa-project-diagram"></i> Memory Map
             </div>
@@ -108,60 +106,7 @@
             </div>
         </section>
 
-        <section id="brain-scan">
-            <div class="section-header">
-                <h2><i class="fas fa-brain"></i> Neural Scan Visualization</h2>
-                <div class="patient-selector">
-                    <select id="scan-patient-select">
-                        <option>Marcus Rivera - Combat Trauma</option>
-                        <option>Elena Vasquez - Accident Survivor</option>
-                        <option>David Kim - Assault Recovery</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="brain-scan-container">
-                <div class="scan-controls">
-                    <button class="scan-btn active" data-scan="before">
-                        <i class="fas fa-brain"></i> Pre-Intervention
-                    </button>
-                    <button class="scan-btn" data-scan="after">
-                        <i class="fas fa-brain"></i> Post-Intervention
-                    </button>
-                    <button class="scan-btn" data-scan="comparison">
-                        <i class="fas fa-exchange-alt"></i> Comparison
-                    </button>
-                </div>
-                
-                <div class="brain-visualization">
-                    <canvas id="brain-3d" width="600" height="400"></canvas>
-                    <div class="scan-info">
-                        <div class="trauma-indicators">
-                            <h4>Trauma Markers Detected:</h4>
-                            <div class="marker high-risk">Amygdala Hyperactivity: 89%</div>
-                            <div class="marker medium-risk">Hippocampus Dysfunction: 67%</div>
-                            <div class="marker low-risk">Prefrontal Cortex: 34%</div>
-                        </div>
-                        <div class="intervention-zones">
-                            <h4>Intervention Targets:</h4>
-                            <div class="zone primary">Primary: Memory Cluster 7A-9C</div>
-                            <div class="zone secondary">Secondary: Neural Pathway B-15</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="heatmap-legend">
-                    <h4>Neural Activity Scale</h4>
-                    <div class="legend-scale">
-                        <div class="scale-item" style="background: #ff4444;">Critical (80-100%)</div>
-                        <div class="scale-item" style="background: #ff8800;">High (60-79%)</div>
-                        <div class="scale-item" style="background: #ffbb00;">Moderate (40-59%)</div>
-                        <div class="scale-item" style="background: #88cc00;">Normal (20-39%)</div>
-                        <div class="scale-item" style="background: #00cc44;">Optimal (0-19%)</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
 
         <section id="memory-mapping">
             <div class="section-header">
@@ -283,19 +228,72 @@
             </div>
             
             <div class="progress-container">
-                <div class="recovery-chart">
-                    <h3><i class="fas fa-heart"></i> Recovery Timeline</h3>
-                    <canvas id="recovery-timeline" width="500" height="250"></canvas>
+                <div class="recovery-overview">
+                    <h3><i class="fas fa-chart-line"></i> Recovery Timeline Overview</h3>
+                    <div class="recovery-controls">
+                        <div class="patient-selector">
+                            <label>Patient:</label>
+                            <select id="recovery-patient-select">
+                                <option value="all">All Patients</option>
+                                <option value="0">Marcus Rivera</option>
+                                <option value="1">Elena Vasquez</option>
+                                <option value="2">David Kim</option>
+                                <option value="4">James Thompson</option>
+                            </select>
+                        </div>
+                        <div class="timeline-controls">
+                            <button class="timeline-btn active" data-view="trauma">Trauma Score</button>
+                            <button class="timeline-btn" data-view="anxiety">Anxiety Level</button>
+                            <button class="timeline-btn" data-view="sleep">Sleep Quality</button>
+                            <button class="timeline-btn" data-view="social">Social Function</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="recovery-timeline" width="800" height="350"></canvas>
+                    </div>
+                    <div class="recovery-legends">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #f44336;"></div>
+                            <span>Pre-Intervention</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #4caf50;"></div>
+                            <span>Post-Intervention</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #2196f3;"></div>
+                            <span>Target Range</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recovery-metrics-grid">
+                    <div class="metric-panel">
+                        <h4><i class="fas fa-tachometer-alt"></i> Key Indicators</h4>
+                        <div class="indicators-list" id="key-indicators"></div>
+                    </div>
+                    
+                    <div class="milestone-panel">
+                        <h4><i class="fas fa-flag-checkered"></i> Recovery Milestones</h4>
+                        <div class="milestones-timeline" id="recovery-milestones"></div>
+                    </div>
+                    
+                    <div class="comparison-panel">
+                        <h4><i class="fas fa-users"></i> Patient Comparison</h4>
+                        <canvas id="comparison-chart" width="300" height="200"></canvas>
+                    </div>
                 </div>
                 
-                <div class="therapy-notes">
-                    <h3><i class="fas fa-notes-medical"></i> Therapy Session Notes</h3>
-                    <div class="notes-list" id="therapy-notes"></div>
-                </div>
-                
-                <div class="side-effects-monitor">
-                    <h3><i class="fas fa-thermometer-half"></i> Side Effects Monitor</h3>
-                    <div class="effects-grid" id="side-effects"></div>
+                <div class="detailed-progress">
+                    <div class="therapy-notes">
+                        <h3><i class="fas fa-notes-medical"></i> Therapy Session Notes</h3>
+                        <div class="notes-list" id="therapy-notes"></div>
+                    </div>
+                    
+                    <div class="side-effects-monitor">
+                        <h3><i class="fas fa-thermometer-half"></i> Side Effects Monitor</h3>
+                        <div class="effects-grid" id="side-effects"></div>
+                    </div>
                 </div>
                 
                 <div class="success-metrics">
