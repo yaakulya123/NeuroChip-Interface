@@ -1,3 +1,11 @@
+### Legal Documentation: https://docs.google.com/document/d/1l9BL2LEhUhYyEwUedTKKzWtJUxXivmApI6UkuPZ8KNU/edit?tab=t.0
+### Presentation Pitch: https://www.canva.com/design/DAGqyaXmRmI/0PGvAoxf242W4ZybAUOqBQ/edit?utm_content=DAGqyaXmRmI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+### Interface Link: https://yaakulya123.github.io/NeuroChip-Interface/
+
+
+
+### Screenshots of the Interface
+
 ![image](https://github.com/user-attachments/assets/37fdf415-73be-45c2-9677-99c7d41c2317)
 
 
